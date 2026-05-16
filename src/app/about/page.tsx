@@ -172,7 +172,7 @@ function HeroSection({ t }: { t: any }) {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring", damping: 12, stiffness: 200 },
+      transition: { type: "spring" as const, damping: 12, stiffness: 200 },
     },
   };
 

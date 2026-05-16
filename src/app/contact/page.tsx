@@ -45,7 +45,7 @@ export default function ContactPage() {
 
   const charVariants = {
     hidden: { opacity: 0, y: 40, scale: 0.5 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", damping: 12, stiffness: 200 } }
+    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, damping: 12, stiffness: 200 } }
   };
 
   return (
