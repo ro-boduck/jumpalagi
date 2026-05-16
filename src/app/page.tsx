@@ -1,9 +1,11 @@
 import React from 'react';
 import { Hero } from '../components/Hero';
-import { ValuePillars } from '../components/ValuePillars';
-import { PackageCatalog } from '../components/PackageCatalog';
-import { TrustSection } from '../components/TrustSection';
-import { Footer } from '../components/Footer';
+import dynamic from 'next/dynamic';
+
+const ValuePillars = dynamic(() => import('../components/ValuePillars').then(mod => mod.ValuePillars));
+const PackageCatalog = dynamic(() => import('../components/PackageCatalog').then(mod => mod.PackageCatalog));
+const TrustSection = dynamic(() => import('../components/TrustSection').then(mod => mod.TrustSection));
+const Footer = dynamic(() => import('../components/Footer').then(mod => mod.Footer));
 
 export default function LandingPage() {
   return (

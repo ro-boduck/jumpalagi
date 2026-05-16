@@ -2,6 +2,8 @@
 
 import { Navbar } from './Navbar';
 import { Button } from './ui/button';
+import { ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const DICT = {
@@ -44,23 +46,23 @@ export function Hero() {
 
       <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border mt-24">
         {/* Main Hook & Relate */}
-        <div className="col-span-1 md:col-span-12 flex flex-col justify-center py-8 px-5 md:p-12 relative overflow-hidden group border-b-2 border-border">
-          <span className="text-accent font-bold tracking-widest uppercase mb-3 md:mb-8 block text-xs md:text-sm">
+        <div className="col-span-1 md:col-span-12 flex flex-col justify-center min-h-[calc(100dvh-6rem)] md:min-h-0 py-12 px-5 md:p-12 relative overflow-hidden group border-b-2 border-border">
+          <span className="text-accent font-bold tracking-widest uppercase mb-6 md:mb-8 block text-xs md:text-sm">
             {t.hookSubtitle}
           </span>
-          <div className="mb-4 md:mb-12">
+          <div className="mb-8 md:mb-12">
             <div className="overflow-hidden mb-1 md:mb-2">
-               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter text-text animate-text-reveal cursor-default break-words leading-[0.9]" style={{animationDelay: '0.1s'}}>
+               <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter text-text animate-text-reveal cursor-default break-words leading-[0.9]" style={{animationDelay: '0.1s'}}>
                  {t.hook1}
                </h1>
             </div>
             <div className="overflow-hidden">
-               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter text-primary animate-text-reveal cursor-default break-words leading-[0.9]" style={{animationDelay: '0.2s'}}>
+               <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter text-primary animate-text-reveal cursor-default break-words leading-[0.9]" style={{animationDelay: '0.2s'}}>
                  {t.hook2}
                </h1>
             </div>
           </div>
-          <p className="hidden md:block text-sm sm:text-base md:text-2xl text-text max-w-4xl font-bold uppercase tracking-widest leading-snug md:leading-tight mb-6 md:mb-16 opacity-90">
+          <p className="text-sm sm:text-base md:text-2xl text-text max-w-4xl font-bold uppercase tracking-widest leading-relaxed md:leading-tight mb-10 md:mb-16 opacity-90">
             {t.hookDesc}
           </p>
           <div>
@@ -68,7 +70,7 @@ export function Hero() {
               href={WHATSAPP_LINK} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground px-4 md:px-12 py-4 md:py-8 text-sm md:text-lg font-black uppercase tracking-widest border-2 border-text transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0_0_var(--text)] active:scale-[0.98] w-full sm:w-auto text-center"
+              className="inline-block bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground px-6 md:px-12 py-5 md:py-8 text-base md:text-lg font-black uppercase tracking-widest border-2 border-text transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0_0_var(--text)] active:scale-[0.98] w-full sm:w-auto text-center"
             >
               {t.cta}
             </a>
@@ -76,6 +78,37 @@ export function Hero() {
               {t.ctaDesc}
             </p>
           </div>
+
+          {/* Animated Scroll Indicator */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 1 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
+          >
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-text/40 rotate-180 [writing-mode:vertical-lr]">SCROLL</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ChevronDown className="w-5 h-5 text-text/40" />
+            </motion.div>
+          </motion.div>
+
+          {/* Mobile Scroll Indicator (Simpler) */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 1 }}
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 flex md:hidden flex-col items-center"
+          >
+            <motion.div
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ChevronDown className="w-8 h-8 text-primary" />
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Trust Indicators - Hidden on mobile for compactness */}
