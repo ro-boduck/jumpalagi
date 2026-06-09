@@ -258,7 +258,7 @@ export default function AboutPage() {
     <main className="flex-1 w-full flex flex-col bg-bg text-text selection:bg-accent selection:text-white min-h-screen relative overflow-x-hidden">
       <Navbar />
       
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border mt-24">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border">
         
         <HeroSection t={t} />
 

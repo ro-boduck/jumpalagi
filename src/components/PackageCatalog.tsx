@@ -63,7 +63,7 @@ export function PackageCatalog() {
               className={`shrink-0 w-[85vw] sm:w-[400px] md:w-auto md:col-span-6 flex flex-col justify-between p-5 md:p-12 border-2 md:border-y-0 md:border-l-0 md:border-r-0 md:border-b-2 border-text md:border-border snap-center md:snap-align-none group transition-all duration-300 bg-bg hover:bg-muted focus-visible:ring-4 focus-visible:ring-primary emil-button overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-none ${i % 2 !== 0 ? 'md:border-l-2' : ''} ${i >= 2 ? 'md:border-b-0' : ''} ${i === t.packages.length - 1 ? 'md:border-b-0' : ''}`}
             >
               <div className="flex justify-between items-start mb-6 md:mb-16">
-                <span className="font-black text-xs md:text-xl tracking-tight border-2 border-text text-text px-2 md:px-3 py-1 uppercase leading-none">{pkg.label}</span>
+                <span className="neo-label text-xs md:text-xl px-2 md:px-3 py-1 leading-none">{pkg.label}</span>
                 <ArrowUpRight className="w-8 h-8 md:w-12 md:h-12 text-primary group-hover:rotate-45 group-hover:scale-125 transition-transform duration-500 shrink-0" />
               </div>
               <div className="group-hover:-translate-y-2 transition-transform duration-500 mt-2 md:mt-0">

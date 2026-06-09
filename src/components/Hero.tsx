@@ -18,7 +18,7 @@ const DICT = {
     trust1Desc: 'Singkirkan drama panitia. Kami urus semua pencarian destinasi, reservasi akomodasi, hingga transportasi acara.',
     trust2Title: 'PILIHAN DESTINASI',
     trust2Desc: 'Kami menyediakan ragam pilihan tempat reuni yang nyaman, aman, dan disesuaikan dengan gaya kumpul grup Anda.',
-    marquee: 'REUNI TANPA DRAMA — SPESIALIS REUNI #1 — '
+    marquee: 'MANAJEMEN KEUANGAN AMAN — TIM CONCIERGE DEDIKASI — PRIVASI TERJAMIN — '
   },
   EN: {
     hookSubtitle: 'PROFESSIONAL REUNION SPECIALIST',
@@ -31,7 +31,7 @@ const DICT = {
     trust1Desc: 'Eliminate committee drama. We handle all destination searches, accommodation bookings, and event transportation.',
     trust2Title: 'CURATED DESTINATIONS',
     trust2Desc: 'We provide a variety of comfortable and safe reunion venues, perfectly matched to your group\'s preferred gathering style.',
-    marquee: 'DRAMA-FREE REUNIONS — #1 REUNION SPECIALIST — '
+    marquee: 'SECURE FINANCIAL MANAGEMENT — DEDICATED CONCIERGE TEAM — GUARANTEED PRIVACY — '
   }
 };
 
@@ -44,13 +44,13 @@ export function Hero() {
     <section className="relative w-full flex flex-col bg-bg overflow-hidden">
       <Navbar />
 
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border mt-24">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border">
         {/* Main Hook & Relate */}
         <div className="col-span-1 md:col-span-12 flex flex-col justify-center min-h-[calc(100dvh-6rem)] md:min-h-0 py-12 px-5 md:p-12 relative overflow-hidden group border-b-2 border-border">
-          <span className="text-accent font-bold tracking-widest uppercase mb-6 md:mb-8 block text-xs md:text-sm">
+          <span className="text-primary font-bold tracking-widest uppercase mb-1.5 md:mb-2 block text-xs md:text-sm">
             {t.hookSubtitle}
           </span>
-          <div className="mb-8 md:mb-12">
+          <div className="mb-4 md:mb-6">
             <div className="overflow-hidden mb-1 md:mb-2">
                <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter text-text animate-text-reveal cursor-default break-words leading-[0.9]" style={{animationDelay: '0.1s'}}>
                  {t.hook1}
@@ -62,7 +62,7 @@ export function Hero() {
                </h1>
             </div>
           </div>
-          <p className="text-sm sm:text-base md:text-2xl text-text max-w-4xl font-bold uppercase tracking-widest leading-relaxed md:leading-tight mb-10 md:mb-16 opacity-90">
+          <p className="text-sm sm:text-base md:text-2xl text-text max-w-4xl font-bold uppercase tracking-widest leading-relaxed md:leading-tight mb-5 md:mb-8 opacity-90">
             {t.hookDesc}
           </p>
           <div>
@@ -70,45 +70,14 @@ export function Hero() {
               href={WHATSAPP_LINK} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground px-6 md:px-12 py-5 md:py-8 text-base md:text-lg font-black uppercase tracking-widest border-2 border-text transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0_0_var(--text)] active:scale-[0.98] w-full sm:w-auto text-center"
+              className="neo-btn-primary"
             >
               {t.cta}
             </a>
-            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest mt-3 text-text/70">
+            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest mt-3 text-primary">
               {t.ctaDesc}
             </p>
           </div>
-
-          {/* Animated Scroll Indicator */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
-          >
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-text/40 rotate-180 [writing-mode:vertical-lr]">SCROLL</span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <ChevronDown className="w-5 h-5 text-text/40" />
-            </motion.div>
-          </motion.div>
-
-          {/* Mobile Scroll Indicator (Simpler) */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 1 }}
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 flex md:hidden flex-col items-center"
-          >
-            <motion.div
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <ChevronDown className="w-8 h-8 text-primary" />
-            </motion.div>
-          </motion.div>
         </div>
 
         {/* Trust Indicators - Hidden on mobile for compactness */}
@@ -127,11 +96,18 @@ export function Hero() {
       </div>
       
       {/* Kinetic Marquee */}
-      <div className="w-full overflow-hidden border-b-2 border-border bg-accent py-3 flex items-center border-t-2 max-w-7xl mx-auto border-l-2 border-r-2">
-         <div className="flex whitespace-nowrap animate-marquee" style={{ width: '200%' }}>
-            {Array(10).fill(t.marquee).map((text, i) => (
-              <span key={i} className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-accent-foreground px-4">{text}</span>
-            ))}
+      <div className="w-full overflow-hidden border-b-2 border-border bg-accent py-3 flex items-center max-w-7xl mx-auto border-l-2 border-r-2">
+         <div className="animate-marquee">
+            <div className="flex shrink-0">
+              {Array(4).fill(t.marquee).map((text, i) => (
+                <span key={i} className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-accent-foreground px-4">{text}</span>
+              ))}
+            </div>
+            <div className="flex shrink-0" aria-hidden="true">
+              {Array(4).fill(t.marquee).map((text, i) => (
+                <span key={i} className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-accent-foreground px-4">{text}</span>
+              ))}
+            </div>
          </div>
       </div>
     </section>

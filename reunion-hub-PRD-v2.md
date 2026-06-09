@@ -176,7 +176,7 @@ If we offer pre-packaged, customizable reunion itineraries with a clear, accessi
 | `secondary-blue` | `#195172` | Depth, stability | Footer BG, dark sections, high-contrast text |
 | `primary-yellow` | `#E7AF36` | Warmth, nostalgia, energy | Hover states, pricing highlights, badges |
 | `secondary-yellow` | `#EDD08D` | Softness, approachability | Package card BGs, testimonial blocks, dividers |
-| `neutral-white` | `#FFFFFF` | Clarity, space | Page backgrounds, card surfaces |
+| `neutral-white` | `#FEFCFF` | Clarity, space | Page backgrounds, card surfaces |
 | `neutral-900` | `#111827` | Legibility | Body copy — **never use gray below #4B5563** |
 
 > ⚠️ **Accessibility Mandate:** All text must meet WCAG AA contrast ratios (4.5:1 for body, 3:1 for large text). Light gray text is prohibited. All interactive elements must have visible focus states.

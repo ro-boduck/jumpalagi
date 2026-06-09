@@ -31,7 +31,7 @@ export function ValuePillars() {
   const t = DICT[lang];
 
   return (
-    <section className="w-full bg-bg border-b-2 border-border">
+    <section className="w-full bg-bg border-b-2 border-border -mt-[2px]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border">
         
         <div className="col-span-1 md:col-span-12 bg-text text-bg py-6 px-5 md:p-12 border-b-2 border-border">

@@ -52,7 +52,7 @@ export default function ContactPage() {
     <main className="flex-1 w-full flex flex-col bg-bg text-text selection:bg-accent selection:text-white min-h-screen relative overflow-x-hidden">
       <Navbar />
       
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border mt-24">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border">
         
         {/* Header Section */}
         <section className="col-span-1 md:col-span-12 py-12 px-5 md:p-24 border-b-2 border-border bg-accent text-accent-foreground flex flex-col justify-center">
@@ -94,7 +94,7 @@ export default function ContactPage() {
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-4 border-2 border-text bg-bg hover:bg-primary hover:text-primary-foreground transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[4px_4px_0_0_var(--text)] active:scale-[0.98]"
+                  className="group neo-btn-interactive hover:bg-primary hover:text-primary-foreground"
                 >
                   <span className="font-bold uppercase tracking-widest text-sm md:text-base">{t.waBtn}</span>
                   <MessageCircle className="w-6 h-6" />
@@ -104,7 +104,7 @@ export default function ContactPage() {
                   href={INSTAGRAM_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-4 border-2 border-text bg-bg hover:bg-accent hover:text-accent-foreground transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[4px_4px_0_0_var(--text)] active:scale-[0.98]"
+                  className="group neo-btn-interactive hover:bg-accent hover:text-accent-foreground"
                 >
                   <span className="font-bold uppercase tracking-widest text-sm md:text-base">{t.igBtn}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>

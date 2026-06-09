@@ -49,7 +49,7 @@ export function TrustSection() {
             key={i} 
             className={`col-span-1 md:col-span-4 group bg-bg border-b-2 border-border ${i === t.testimonials.length - 1 ? '' : 'md:border-r-2'}`}
           >
-            <div className="w-full h-full flex flex-col justify-between p-6 md:p-10 bg-bg border-2 border-transparent group-hover:border-text transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-2 group-hover:-translate-x-2 group-hover:shadow-[8px_8px_0_0_var(--text)] group-hover:bg-muted/30">
+            <div className="neo-card-hover p-6 md:p-10">
               <div>
                 <Quote className="w-8 h-8 md:w-12 md:h-12 text-accent mb-4 md:mb-6 opacity-80" />
                 <p className="font-bold uppercase tracking-widest text-[11px] md:text-sm leading-relaxed mb-6 md:mb-8">

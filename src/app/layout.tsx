@@ -1,11 +1,19 @@
 import type { Metadata } from 'next';
-import { Montserrat, Geist } from 'next/font/google';
+import { Nunito, Geist } from 'next/font/google';
 import './globals.css';
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const nunito = Nunito({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+});
 
-const montserrat = Montserrat({ subsets: ['latin'], display: 'swap' });
+const geist = Geist({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'JumpaLagi | Reunion Specialist',
@@ -23,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn(montserrat.className, "font-sans", geist.variable)}>
+    <html lang="en" className={cn(nunito.variable, geist.variable, "font-sans")}>
       <body className="antialiased min-h-screen flex flex-col">
         <LanguageProvider>
           {children}

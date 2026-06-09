@@ -3,8 +3,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const DICT = {
   ID: {
@@ -81,127 +80,27 @@ const DICT = {
   }
 };
 
-function InteractiveLetter({ char, mouseX, mouseY }: { char: string, mouseX: any, mouseY: any }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const bounds = useRef({ x: 0, y: 0 });
-  const distValue = useMotionValue(9999);
-
-  useEffect(() => {
-    const updateBounds = () => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        bounds.current = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-      }
-    };
-    updateBounds();
-    window.addEventListener("resize", updateBounds);
-    window.addEventListener("scroll", updateBounds);
-    return () => {
-      window.removeEventListener("resize", updateBounds);
-      window.removeEventListener("scroll", updateBounds);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleUpdate = () => {
-      const mx = mouseX.get();
-      const my = mouseY.get();
-      if (mx === 9999 || my === 9999) {
-        distValue.set(9999);
-        return;
-      }
-      const dx = mx - bounds.current.x;
-      const dy = my - bounds.current.y;
-      distValue.set(Math.sqrt(dx * dx + dy * dy));
-    };
-
-    const unsubX = mouseX.on("change", handleUpdate);
-    const unsubY = mouseY.on("change", handleUpdate);
-
-    return () => {
-      unsubX();
-      unsubY();
-    };
-  }, [mouseX, mouseY, distValue]);
-
-  // Derived transforms using safe math functions to avoid Framer Motion array interpolation bugs
-  const scaleRaw = useTransform(distValue, (val: number) => val < 150 ? 1 + (1 - val / 150) * 0.4 : 1);
-  const yRaw = useTransform(distValue, (val: number) => val < 150 ? (val / 150 - 1) * 20 : 0);
-  const blueIntensityRaw = useTransform(distValue, (val: number) => val < 80 ? 1 - (val / 80) : 0);
-
-  // Strong spring config for immediate but fluid response (Emil Kowalski guidelines)
-  const scale = useSpring(scaleRaw, { stiffness: 400, damping: 25, mass: 0.5 });
-  const y = useSpring(yRaw, { stiffness: 400, damping: 25, mass: 0.5 });
-  const blueOpacity = useSpring(blueIntensityRaw, { stiffness: 400, damping: 25, mass: 0.5 });
-
-  return (
-    <motion.span
-      ref={ref}
-      style={{ display: "inline-block", scale, y, transformOrigin: "bottom center", position: "relative" }}
-      className="pointer-events-none"
-    >
-      <span className="text-text">{char}</span>
-      <motion.span 
-        aria-hidden="true" 
-        style={{ position: "absolute", left: 0, top: 0, opacity: blueOpacity, color: "#3B82F6" }}
-      >
-        {char}
-      </motion.span>
-    </motion.span>
-  );
-}
-
-function InteractiveTitle({ text }: { text: string }) {
-  const mouseX = useMotionValue(9999);
-  const mouseY = useMotionValue(9999);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(9999);
-    mouseY.set(9999);
-  };
-
-  return (
-    <h1 
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter mb-4 leading-[0.85] cursor-default flex flex-wrap text-text"
-    >
-      {text.split(" ").map((word, wIdx) => (
-        <span key={wIdx} className="inline-flex mr-[0.3em]">
-          {word.split("").map((char, cIdx) => (
-            <InteractiveLetter key={cIdx} char={char} mouseX={mouseX} mouseY={mouseY} />
-          ))}
-        </span>
-      ))}
-    </h1>
-  );
-}
-
 export default function PaketPage() {
   const WHATSAPP_LINK = "https://wa.me/6281234567890?text=Halo%20Tim%20Jumpa%20Lagi,%20saya%20ingin%20tanya%20detail%20mengenai%20paket%20reuni.";
   const { lang } = useLanguage();
   const t = DICT[lang];
 
   return (
-    <main className="w-full min-h-screen bg-bg flex flex-col">
+    <main className="w-full min-h-screen bg-bg flex flex-col text-text selection:bg-accent selection:text-white">
       <Navbar />
 
-      <section className="w-full bg-bg border-b-2 border-border mt-24">
+      <section className="w-full bg-bg border-b-2 border-border">
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-l-2 border-r-2 border-border">
           
-          <div className="col-span-1 md:col-span-12 bg-accent text-accent-foreground p-6 md:p-12 border-b-2 border-border">
-            <span className="font-bold tracking-widest uppercase mb-6 block text-sm">
+          <div className="col-span-1 md:col-span-12 bg-accent p-6 md:p-12 border-b-2 border-border">
+            <span className="font-bold tracking-widest uppercase mb-6 block text-sm text-bone">
               {t.subtitle}
             </span>
-            {/* INTERACTIVE KINETIC TYPOGRAPHY */}
-            <InteractiveTitle text={t.title} />
-            <p className="text-base md:text-lg font-bold uppercase tracking-widest max-w-3xl leading-relaxed mt-4">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter mb-4 leading-[0.85] cursor-default text-bone">
+              {t.title}
+            </h1>
+            <p className="text-base md:text-lg font-bold uppercase tracking-widest max-w-3xl leading-relaxed mt-4 text-bone">
               {t.desc}
             </p>
           </div>
@@ -211,9 +110,9 @@ export default function PaketPage() {
               key={i}
               className={`col-span-1 md:col-span-6 bg-bg group ${i % 2 !== 0 ? 'md:border-l-2' : ''} border-b-2 border-border`}
             >
-              <div className="w-full h-full flex flex-col justify-between p-6 md:p-12 bg-bg border-2 border-transparent group-hover:border-text transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-2 group-hover:-translate-x-2 group-hover:shadow-[8px_8px_0_0_var(--text)] group-hover:bg-muted/30">
+              <div className="neo-card-hover p-6 md:p-12">
                 <div className="flex justify-between items-start mb-8">
-                  <span className="font-black text-sm md:text-base tracking-tight border-2 border-text text-text px-3 py-1 uppercase">{pkg.label}</span>
+                  <span className="neo-label text-sm md:text-base px-3 py-1">{pkg.label}</span>
                   <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="bg-primary text-primary-foreground p-3 active:scale-[0.95] transition-all duration-[160ms] ease-[cubic-bezier(0.23,1,0.32,1)] rounded-none border-2 border-text hover:bg-text hover:text-bg">
                     <ArrowUpRight className="w-6 h-6" />
                   </a>

@@ -7,51 +7,64 @@
 @theme inline {
   --color-primary: #1D699B;
   --color-primary-dark: #195172;
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
   --color-accent: #E7AF36;
   --color-accent-light: #EDD08D;
-  --color-text: #2D2A26;
+  --color-accent-foreground: var(--accent-foreground);
+  --color-text: var(--text-color);
   --color-text-light: #7A756D;
-  --color-bg: #FFFDF7;
-  --color-card: #FFFFFF;
-  --color-border: #E8E3D9;
-  --font-heading: 'Outfit', 'Helvetica Neue', sans-serif;
-  --font-sans: 'Inter', 'Helvetica Neue', sans-serif;
+  --color-bg: #FEFCFF;
+  --color-card: #FEFCFF;
+  --color-border: var(--border);
+  --color-bone: #F9F6EE;
+  --color-white: #FEFCFF;
+  --font-heading: var(--font-heading), sans-serif;
+  --font-sans: var(--font-sans), sans-serif;
   
   --ease-out-custom: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-in-out-custom: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 :root {
-  --background: #FFFDF7;
+  --text-color: #2D2A26;
+  --background: #FEFCFF;
   --foreground: #2D2A26;
-  --card: #FFFFFF;
+  --card: #FEFCFF;
   --card-foreground: #2D2A26;
-  --popover: #FFFFFF;
+  --popover: #FEFCFF;
   --popover-foreground: #2D2A26;
   --primary: #0F2D4A; /* Deep Navy for Trust */
-  --primary-foreground: #FFFFFF;
+  --primary-foreground: #F9F6EE;
   --secondary: #1D699B; /* Medium Blue */
-  --secondary-foreground: #FFFFFF;
+  --secondary-foreground: #F9F6EE;
   --muted: #F8F9FA; /* Soft Gray/White */
   --muted-foreground: #4B5563;
-  --accent: #EAB308; /* Gold/Yellow for Hook and Accents */
-  --accent-foreground: #0F2D4A;
+  --accent: #E7AF36; /* Gold/Yellow for Hook and Accents */
+  --accent-foreground: #F9F6EE;
   --border: #111827; /* Dark borders for structure */
   --text: #111827; /* Dark text */
-  --bg: #FFFFFF; /* Pure White */
+  --bg: #F9F6EE; /* Bone White */
   --radius: 0rem;
 }
 
 @layer base {
   body {
-    @apply bg-bg text-text;
+    @apply bg-bg text-text font-sans;
     -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), sans-serif;
+    font-weight: 800;
   }
 }
 
 @layer utilities {
   .animate-marquee {
-    animation: marquee 20s linear infinite;
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
   }
   .animate-marquee-reverse {
     animation: marquee 20s linear infinite reverse;
@@ -69,4 +82,71 @@
 @keyframes text-reveal {
   0% { transform: translateY(110%); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Custom color scopes to only change font color to yellow, keeping borders/backgrounds dark */
+[class*="text-text"] {
+  --text-color: #E7AF36 !important;
+}
+[class*="border-text"] {
+  --text-color: #111827 !important;
+}
+[class*="bg-text"] {
+  --text-color: #2D2A26 !important;
+}
+
+/* Custom Neobrutalist CSS Utilities */
+@utility neo-btn-primary {
+  @apply inline-block bg-accent text-accent-foreground px-6 md:px-12 py-5 md:py-8 text-base md:text-lg font-black uppercase tracking-widest border-2 transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:-translate-x-1 active:scale-[0.98] w-full sm:w-auto text-center;
+  border-color: var(--border);
+
+  &:hover {
+    @apply bg-primary text-primary-foreground;
+    box-shadow: 1px 1px 0 0 var(--border), 2px 2px 0 0 var(--border), 3px 3px 0 0 var(--border), 4px 4px 0 0 var(--border), 5px 5px 0 0 var(--border), 6px 6px 0 0 var(--border);
+  }
+}
+
+@utility neo-btn-secondary {
+  @apply flex items-center justify-center gap-1.5 px-3 py-1.5 text-[10px] md:gap-2 md:px-4 md:text-xs font-bold border-2 bg-bg transition-all duration-200 uppercase tracking-widest;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 1px 1px 0 0 var(--color-primary), 2px 2px 0 0 var(--color-primary);
+
+  &:hover {
+    @apply bg-accent text-white -translate-y-[1px] -translate-x-[1px];
+    border-color: var(--color-primary);
+    box-shadow: 1px 1px 0 0 var(--color-primary), 2px 2px 0 0 var(--color-primary), 3px 3px 0 0 var(--color-primary);
+  }
+}
+
+@utility neo-btn-interactive {
+  @apply flex items-center justify-between p-4 border-2 bg-bg transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98];
+  border-color: var(--border);
+  color: var(--border);
+
+  &:hover {
+    @apply -translate-y-1 -translate-x-1;
+    box-shadow: 1px 1px 0 0 var(--border), 2px 2px 0 0 var(--border), 3px 3px 0 0 var(--border), 4px 4px 0 0 var(--border);
+  }
+}
+
+@utility neo-card-hover {
+  @apply w-full h-full flex flex-col justify-between bg-bg border-2 border-transparent transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)];
+  position: relative;
+  z-index: 0;
+  translate: 0px 0px;
+
+  .group:hover & {
+    z-index: 10;
+    border-color: var(--border);
+    translate: -8px -8px;
+    box-shadow: 1px 1px 0 0 var(--border), 2px 2px 0 0 var(--border), 3px 3px 0 0 var(--border), 4px 4px 0 0 var(--border), 5px 5px 0 0 var(--border), 6px 6px 0 0 var(--border), 7px 7px 0 0 var(--border), 8px 8px 0 0 var(--border);
+    background-color: var(--color-bg);
+  }
+}
+
+@utility neo-label {
+  @apply font-black tracking-tight border-2 uppercase;
+  border-color: var(--border);
+  color: var(--border);
 }

@@ -9,7 +9,7 @@
 - **Secondary Blue**: `#195172` (Depth, stability. Use for Footer BG, dark sections, high-contrast text)
 - **Primary Yellow**: `#E7AF36` (Warmth, nostalgia, energy. Use for Hover states, pricing highlights, badges)
 - **Secondary Yellow**: `#EDD08D` (Softness, approachability. Use for Package card BGs, testimonial blocks, dividers)
-- **Neutral White**: `#FFFFFF` (Page backgrounds, card surfaces)
+- **Neutral White**: `#FEFCFF` (Page backgrounds, card surfaces)
 - **Neutral 900 (Dark)**: `#111827` (Body copy. Never use light gray below #4B5563 for accessibility)
 
 ## Typography
