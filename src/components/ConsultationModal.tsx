@@ -241,128 +241,130 @@ export function ConsultationModal() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-5 max-h-[60vh] overflow-y-auto pr-2">
-                  {/* Row 1: Name & Whatsapp */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-black uppercase tracking-widest text-primary">
-                        {t.nameLabel}
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder={t.namePlaceholder}
-                        className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50"
-                      />
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-5">
+                  <div className="flex flex-col gap-4 md:gap-5 max-h-[48vh] overflow-y-auto pr-2 pb-4">
+                    {/* Row 1: Name & Whatsapp */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-xs font-black uppercase tracking-widest text-primary">
+                          {t.nameLabel}
+                        </label>
+                        <input
+                          required
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder={t.namePlaceholder}
+                          className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-xs font-black uppercase tracking-widest text-primary">
+                          {t.whatsappLabel}
+                        </label>
+                        <input
+                          required
+                          type="tel"
+                          name="whatsapp"
+                          value={formData.whatsapp}
+                          onChange={handleChange}
+                          placeholder={t.whatsappPlaceholder}
+                          className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50"
+                        />
+                      </div>
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-black uppercase tracking-widest text-primary">
-                        {t.whatsappLabel}
-                      </label>
-                      <input
-                        required
-                        type="tel"
-                        name="whatsapp"
-                        value={formData.whatsapp}
-                        onChange={handleChange}
-                        placeholder={t.whatsappPlaceholder}
-                        className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50"
-                      />
-                    </div>
-                  </div>
 
-                  {/* Row 2: Email & Reunion Type */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-black uppercase tracking-widest text-primary">
-                        {t.emailLabel}
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder={t.emailPlaceholder}
-                        className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50"
-                      />
+                    {/* Row 2: Email & Reunion Type */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-xs font-black uppercase tracking-widest text-primary">
+                          {t.emailLabel}
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder={t.emailPlaceholder}
+                          className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-xs font-black uppercase tracking-widest text-primary">
+                          {t.packageLabel}
+                        </label>
+                        <select
+                          name="packageType"
+                          value={formData.packageType}
+                          onChange={handleChange}
+                          className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none cursor-pointer appearance-none relative"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230F2D4A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'right 12px center',
+                            backgroundSize: '16px'
+                          }}
+                        >
+                          <option value="corporate">{t.packages.corporate}</option>
+                          <option value="intimate">{t.packages.intimate}</option>
+                          <option value="batch">{t.packages.batch}</option>
+                          <option value="family">{t.packages.family}</option>
+                          <option value="custom">{t.packages.custom}</option>
+                        </select>
+                      </div>
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-black uppercase tracking-widest text-primary">
-                        {t.packageLabel}
-                      </label>
-                      <select
-                        name="packageType"
-                        value={formData.packageType}
-                        onChange={handleChange}
-                        className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none cursor-pointer appearance-none relative"
-                        style={{
-                          backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230F2D4A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'right 12px center',
-                          backgroundSize: '16px'
-                        }}
-                      >
-                        <option value="corporate">{t.packages.corporate}</option>
-                        <option value="intimate">{t.packages.intimate}</option>
-                        <option value="batch">{t.packages.batch}</option>
-                        <option value="family">{t.packages.family}</option>
-                        <option value="custom">{t.packages.custom}</option>
-                      </select>
-                    </div>
-                  </div>
 
-                  {/* Row 3: Participants & Date */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-black uppercase tracking-widest text-primary">
-                        {t.participantsLabel}
-                      </label>
-                      <input
-                        type="number"
-                        name="participants"
-                        value={formData.participants}
-                        onChange={handleChange}
-                        placeholder={t.participantsPlaceholder}
-                        className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50"
-                      />
+                    {/* Row 3: Participants & Date */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-xs font-black uppercase tracking-widest text-primary">
+                          {t.participantsLabel}
+                        </label>
+                        <input
+                          type="number"
+                          name="participants"
+                          value={formData.participants}
+                          onChange={handleChange}
+                          placeholder={t.participantsPlaceholder}
+                          className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-xs font-black uppercase tracking-widest text-primary">
+                          {t.dateLabel}
+                        </label>
+                        <input
+                          type="date"
+                          name="date"
+                          value={formData.date}
+                          onChange={handleChange}
+                          className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none"
+                        />
+                      </div>
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-black uppercase tracking-widest text-primary">
-                        {t.dateLabel}
-                      </label>
-                      <input
-                        type="date"
-                        name="date"
-                        value={formData.date}
-                        onChange={handleChange}
-                        className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none"
-                      />
-                    </div>
-                  </div>
 
-                  {/* Row 4: Notes */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-black uppercase tracking-widest text-primary">
-                      {t.notesLabel}
-                    </label>
-                    <textarea
-                      name="notes"
-                      rows={3}
-                      value={formData.notes}
-                      onChange={handleChange}
-                      placeholder={t.notesPlaceholder}
-                      className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50 resize-none min-h-[80px]"
-                    />
+                    {/* Row 4: Notes */}
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-xs font-black uppercase tracking-widest text-primary">
+                        {t.notesLabel}
+                      </label>
+                      <textarea
+                        name="notes"
+                        rows={3}
+                        value={formData.notes}
+                        onChange={handleChange}
+                        placeholder={t.notesPlaceholder}
+                        className="w-full border-2 border-primary bg-white text-primary p-3 font-bold uppercase tracking-wider text-sm outline-none focus:shadow-[4px_4px_0_0_#E7AF36] transition-all duration-150 rounded-none placeholder:opacity-50 resize-none min-h-[80px]"
+                      />
+                    </div>
                   </div>
 
                   {/* Submit Button */}
                   <button
                     disabled={status === 'submitting'}
                     type="submit"
-                    className="neo-btn-primary mt-2 flex items-center justify-center gap-3 disabled:opacity-50"
+                    className="neo-btn-primary flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
                   >
                     <Send className="w-5 h-5 stroke-[2.5px]" />
                     <span>{status === 'submitting' ? t.submittingBtn : t.submitBtn}</span>
