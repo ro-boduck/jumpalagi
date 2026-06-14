@@ -32,17 +32,222 @@ export async function POST(request: Request) {
         .replace('{{NOTES}}', notes ? notes.replace(/\n/g, '<br>') : '-')
         .replace('{{WHATSAPP_CLEAN}}', waClean);
     } catch (readError) {
-      console.error('Failed to read HTML template file, falling back to basic inline HTML:', readError);
+      console.error('Failed to read HTML template file, falling back to Neobrutalist inline HTML:', readError);
+      
+      const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+      const waClean = cleanWhatsapp.startsWith('0') ? '62' + cleanWhatsapp.substring(1) : cleanWhatsapp;
+
       emailHtml = `
-        <h2>Detail Konsultasi Reuni Baru</h2>
-        <p><strong>Nama Lengkap:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email || '-'}</p>
-        <p><strong>Nomor WhatsApp:</strong> ${whatsapp}</p>
-        <p><strong>Tipe Reuni:</strong> ${packageType || 'Umum / Kustom'}</p>
-        <p><strong>Estimasi Jumlah Peserta:</strong> ${participants || '-'}</p>
-        <p><strong>Tanggal Reuni:</strong> ${date || '-'}</p>
-        <p><strong>Catatan Tambahan:</strong></p>
-        <p>${notes ? notes.replace(/\n/g, '<br>') : '-'}</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konsultasi Reuni Baru</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace, Arial, sans-serif;
+      background-color: #FEFCFF;
+      margin: 0;
+      padding: 40px 20px;
+      color: #0F2D4A;
+    }
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      background-color: #FEFCFF;
+      padding-bottom: 40px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #FEFCFF;
+      border: 4px solid #0F2D4A;
+      box-shadow: 8px 8px 0px 0px #0F2D4A;
+      padding: 0;
+    }
+    .header-banner {
+      background-color: #E7AF36;
+      border-bottom: 4px solid #0F2D4A;
+      padding: 30px;
+      text-align: center;
+    }
+    .header-banner h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      color: #0F2D4A;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .header-banner .badge {
+      display: inline-block;
+      background-color: #FEFCFF;
+      border: 2px solid #0F2D4A;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      box-shadow: 2px 2px 0px 0px #0F2D4A;
+    }
+    .content-body {
+      padding: 30px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      border-bottom: 4px dashed #0F2D4A;
+      padding-bottom: 8px;
+    }
+    .data-row {
+      margin-bottom: 15px;
+      border: 3px solid #0F2D4A;
+      background-color: #FEFCFF;
+      box-shadow: 4px 4px 0px 0px #0F2D4A;
+    }
+    .data-label {
+      background-color: #E7AF36;
+      border-right: 3px solid #0F2D4A;
+      padding: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      width: 150px;
+      color: #0F2D4A;
+      vertical-align: middle;
+    }
+    .data-value {
+      padding: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #0F2D4A;
+      background-color: #FEFCFF;
+      vertical-align: middle;
+    }
+    .notes-header {
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+    .notes-box {
+      border: 3px solid #0F2D4A;
+      background-color: #FEFCFF;
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: bold;
+      box-shadow: 4px 4px 0px 0px #0F2D4A;
+      margin-bottom: 30px;
+    }
+    .action-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .wa-button {
+      display: inline-block;
+      background-color: #FEFCFF;
+      color: #0F2D4A !important;
+      text-decoration: none;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border: 3px solid #0F2D4A;
+      box-shadow: 4px 4px 0px 0px #0F2D4A;
+    }
+    .footer {
+      background-color: #0F2D4A;
+      color: #F9F6EE;
+      padding: 24px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td align="center">
+        <div class="container">
+          <div class="header-banner">
+            <h1>JUMPA LAGI</h1>
+            <div class="badge">KONSULTASI MASUK</div>
+          </div>
+          <div class="content-body">
+            <div class="section-title">Detail Calon Pelanggan</div>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 25px;">
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr><td class="data-label">Nama</td><td class="data-value">${name}</td></tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr><td class="data-label">Email</td><td class="data-value">${email || '-'}</td></tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr><td class="data-label">WhatsApp</td><td class="data-value">${whatsapp}</td></tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr><td class="data-label">Tipe Reuni</td><td class="data-value">${packageType || 'Umum / Kustom'}</td></tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr><td class="data-label">Peserta</td><td class="data-value">${participants || '-'} Orang</td></tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr><td class="data-label">Tanggal</td><td class="data-value">${date || '-'}</td></tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <div class="notes-header">Catatan Tambahan & Keinginan Khusus</div>
+            <div class="notes-box">${notes ? notes.replace(/\n/g, '<br>') : '-'}</div>
+            <div class="action-container">
+              <a href="https://wa.me/${waClean}" target="_blank" class="wa-button">Hubungi Calon Client</a>
+            </div>
+          </div>
+          <div class="footer">
+            SISTEM NOTIFIKASI OTOMATIS &copy; 2026 JUMPALAGI.COM
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
       `;
     }
 
@@ -82,7 +287,12 @@ export async function POST(request: Request) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Resend API error response:', errorText);
-      return NextResponse.json({ error: 'Gagal mengirim email via Resend' }, { status: 500 });
+      let errorMessage = errorText;
+      try {
+        const errObj = JSON.parse(errorText);
+        errorMessage = errObj.message || errorText;
+      } catch (e) {}
+      return NextResponse.json({ error: `Resend API Error: ${errorMessage}` }, { status: response.status });
     }
 
     const resData = await response.json();
