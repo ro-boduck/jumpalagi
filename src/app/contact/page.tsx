@@ -4,8 +4,20 @@ import React, { useRef } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, MapPin, Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const Map3D = dynamic(() => import('@/components/Map3D'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full bg-[#F9F6EE] flex items-center justify-center border-2 border-[#111827] shadow-[8px_8px_0_0_#111827] min-h-[400px] md:min-h-[600px]">
+      <div className="animate-pulse text-[#111827] font-black uppercase tracking-widest text-sm">
+        MEMUAT PETA 3D...
+      </div>
+    </div>
+  )
+});
 
 const DICT = {
   ID: {
@@ -13,20 +25,22 @@ const DICT = {
     subtitle: 'KAMI SIAP MENDENGAR',
     description: 'Jangan ragu untuk bertanya, berdiskusi, atau sekadar menyapa tim Jumpa Lagi. Kunjungi markas kami atau hubungi secara langsung melalui saluran di bawah ini.',
     addressTitle: 'MARKAS KAMI',
-    address: 'Politeknik Negeri Bali\nKampus Bukit Jimbaran, Kuta Selatan\nBadung, Bali 80364',
+    address: 'POLITEKNIK NEGERI BALI\nKAMPUS BUKIT JIMBARAN, KUTA\nSELATAN\nBADUNG, BALI 80364',
     socialTitle: 'SAPA KAMI',
     waBtn: 'CHAT VIA WHATSAPP',
-    igBtn: 'DM DI INSTAGRAM'
+    igBtn: 'DM DI INSTAGRAM',
+    infoText: 'TIM KAMI SIAP MELAYANI ANDA. HUBUNGI KAMI LANGSUNG UNTUK KONSULTASI GRATIS MENGENAI RENCANA PERJALANAN ANDA.'
   },
   EN: {
     title: 'CONTACT US.',
     subtitle: 'WE ARE LISTENING',
     description: 'Feel free to ask, discuss, or simply say hello to the Jumpa Lagi team. Visit our headquarters or reach out directly through the channels below.',
     addressTitle: 'OUR HQ',
-    address: 'Bali State Polytechnic\nBukit Jimbaran Campus, South Kuta\nBadung, Bali 80364',
+    address: 'BALI STATE POLYTECHNIC\nBUKIT JIMBARAN CAMPUS, SOUTH KUTA\nBADUNG, BALI 80364',
     socialTitle: 'SAY HELLO',
     waBtn: 'CHAT VIA WHATSAPP',
-    igBtn: 'DM ON INSTAGRAM'
+    igBtn: 'DM ON INSTAGRAM',
+    infoText: 'OUR TEAM IS READY TO SERVE YOU. CONTACT US DIRECTLY FOR A FREE CONSULTATION REGARDING YOUR TRAVEL PLAN.'
   }
 };
 
@@ -84,39 +98,64 @@ export default function ContactPage() {
         <section className="col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 border-b-2 border-border bg-bg">
           
           {/* Contact Details */}
-          <div className="col-span-1 md:col-span-5 p-6 md:p-12 border-b-2 md:border-b-0 md:border-r-2 border-border flex flex-col justify-between">
+          <div className="col-span-1 md:col-span-5 p-6 md:p-12 border-b-2 md:border-b-0 md:border-r-2 border-border flex flex-col justify-start gap-8">
             <div>
-              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-text mb-6">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-accent mb-6">
                 {t.socialTitle}
               </h2>
-              <div className="flex flex-col gap-4 mb-12">
+              <div className="flex flex-col gap-5 mb-6">
                 <a 
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group neo-btn-interactive hover:bg-primary hover:text-primary-foreground"
+                  className="group flex items-center gap-4 text-left"
                 >
-                  <span className="font-bold uppercase tracking-widest text-sm md:text-base">{t.waBtn}</span>
-                  <MessageCircle className="w-6 h-6" />
+                  <div className="w-[72px] h-[72px] border-2 border-border bg-white flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105 group-hover:shadow-[4px_4px_0_0_#111827]">
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9 text-[#111827]">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-black text-xl md:text-2xl uppercase tracking-wider text-accent leading-none group-hover:underline">
+                      WHATSAPP
+                    </div>
+                    <div className="font-bold text-[10px] md:text-xs uppercase tracking-widest text-[#111827] mt-1.5 opacity-80 leading-none">
+                      {t.waBtn}
+                    </div>
+                  </div>
                 </a>
                 
                 <a 
                   href={INSTAGRAM_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group neo-btn-interactive hover:bg-accent hover:text-accent-foreground"
+                  className="group flex items-center gap-4 text-left"
                 >
-                  <span className="font-bold uppercase tracking-widest text-sm md:text-base">{t.igBtn}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  <div className="w-[72px] h-[72px] border-2 border-border bg-white flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105 group-hover:shadow-[4px_4px_0_0_#111827]">
+                    <Instagram className="w-9 h-9 text-[#111827] stroke-[2px]" />
+                  </div>
+                  <div>
+                    <div className="font-black text-xl md:text-2xl uppercase tracking-wider text-accent leading-none group-hover:underline">
+                      INSTAGRAM
+                    </div>
+                    <div className="font-bold text-[10px] md:text-xs uppercase tracking-widest text-[#111827] mt-1.5 opacity-80 leading-none">
+                      {t.igBtn}
+                    </div>
+                  </div>
                 </a>
               </div>
+              
+              <p className="text-xs md:text-sm font-bold uppercase tracking-widest leading-relaxed text-[#7A756D] border-t-2 border-dashed border-border/20 pt-6 mt-6">
+                {t.infoText}
+              </p>
             </div>
             
-            <div>
-              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-primary mb-4">
-                {t.addressTitle}
+            <div className="mt-2">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary mb-4 flex items-center gap-2">
+                <MapPin className="w-6 h-6 md:w-8 md:h-8 text-primary stroke-[3px] shrink-0" />
+                <span>{t.addressTitle}</span>
               </h2>
-              <p className="text-sm md:text-lg font-bold uppercase tracking-widest leading-relaxed text-text whitespace-pre-line">
+              <p className="text-sm md:text-lg font-black uppercase tracking-widest leading-relaxed text-accent whitespace-pre-line pl-0">
                 {t.address}
               </p>
             </div>
@@ -124,17 +163,7 @@ export default function ContactPage() {
 
           {/* Map Embed */}
           <div className="col-span-1 md:col-span-7 bg-bg min-h-[400px] md:min-h-[600px] relative p-6 md:p-12 flex flex-col justify-center">
-            <div className="w-full h-full border-2 border-text overflow-hidden relative shadow-[8px_8px_0_0_var(--text)]">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.864388147775!2d115.1599351740632!3d-8.798697691253018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd244c13ee9d753%3A0x6c05042449b50f81!2sPoliteknik%20Negeri%20Bali!5e0!3m2!1sen!2sid!4v1715873834159!5m2!1sen!2sid" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0, position: 'absolute', top: 0, left: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+            <Map3D />
           </div>
 
         </section>

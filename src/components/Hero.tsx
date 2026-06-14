@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useConsultation } from '@/contexts/ConsultationContext';
 
 const DICT = {
   ID: {
@@ -38,6 +39,7 @@ const DICT = {
 export function Hero() {
   const WHATSAPP_LINK = "https://wa.me/6287754764598?text=Halo%20Tim%20Jumpa%20Lagi,%20saya%20butuh%20bantuan%20mewujudkan%20reuni%20kami.";
   const { lang } = useLanguage();
+  const { openConsult } = useConsultation();
   const t = DICT[lang];
 
   return (
@@ -66,14 +68,12 @@ export function Hero() {
             {t.hookDesc}
           </p>
           <div>
-            <a 
-              href={WHATSAPP_LINK} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="neo-btn-primary"
+            <button 
+              onClick={() => openConsult()}
+              className="neo-btn-primary cursor-pointer"
             >
               {t.cta}
-            </a>
+            </button>
             <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest mt-3 text-primary">
               {t.ctaDesc}
             </p>

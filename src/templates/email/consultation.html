@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konsultasi Reuni Baru</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace, Arial, sans-serif;
+      background-color: #FEFCFF;
+      margin: 0;
+      padding: 40px 20px;
+      color: #0F2D4A;
+    }
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      background-color: #FEFCFF;
+      padding-bottom: 40px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #FEFCFF;
+      border: 4px solid #0F2D4A;
+      box-shadow: 8px 8px 0px 0px #0F2D4A;
+      padding: 0;
+    }
+    .header-banner {
+      background-color: #E7AF36;
+      border-bottom: 4px solid #0F2D4A;
+      padding: 30px;
+      text-align: center;
+    }
+    .header-banner h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      color: #0F2D4A;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .header-banner .badge {
+      display: inline-block;
+      background-color: #FEFCFF;
+      border: 2px solid #0F2D4A;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      box-shadow: 2px 2px 0px 0px #0F2D4A;
+    }
+    .content-body {
+      padding: 30px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      border-bottom: 4px dashed #0F2D4A;
+      padding-bottom: 8px;
+    }
+    .data-row {
+      margin-bottom: 15px;
+      border: 3px solid #0F2D4A;
+      background-color: #FEFCFF;
+      box-shadow: 4px 4px 0px 0px #0F2D4A;
+    }
+    .data-label {
+      background-color: #E7AF36;
+      border-right: 3px solid #0F2D4A;
+      padding: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      width: 150px;
+      color: #0F2D4A;
+      vertical-align: middle;
+    }
+    .data-value {
+      padding: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #0F2D4A;
+      background-color: #FEFCFF;
+      vertical-align: middle;
+    }
+    .notes-header {
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+    .notes-box {
+      border: 3px solid #0F2D4A;
+      background-color: #FEFCFF;
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: bold;
+      box-shadow: 4px 4px 0px 0px #0F2D4A;
+      margin-bottom: 30px;
+    }
+    .action-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .wa-button {
+      display: inline-block;
+      background-color: #FEFCFF;
+      color: #0F2D4A !important;
+      text-decoration: none;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border: 3px solid #0F2D4A;
+      box-shadow: 4px 4px 0px 0px #0F2D4A;
+      transition: all 0.15s ease;
+    }
+    .footer {
+      background-color: #0F2D4A;
+      color: #F9F6EE;
+      padding: 24px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .footer a {
+      color: #E7AF36;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td align="center">
+        <div class="container">
+          
+          <!-- Header Banner -->
+          <div class="header-banner">
+            <h1>JUMPA LAGI</h1>
+            <div class="badge">KONSULTASI MASUK</div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="content-body">
+            <div class="section-title">Detail Calon Pelanggan</div>
+            
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 25px;">
+              <!-- Nama -->
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr>
+                      <td class="data-label">Nama</td>
+                      <td class="data-value">{{NAME}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- Email -->
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr>
+                      <td class="data-label">Email</td>
+                      <td class="data-value">{{EMAIL}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- WhatsApp -->
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr>
+                      <td class="data-label">WhatsApp</td>
+                      <td class="data-value">{{WHATSAPP}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- Tipe Reuni -->
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr>
+                      <td class="data-label">Tipe Reuni</td>
+                      <td class="data-value">{{PACKAGE}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- Jumlah Peserta -->
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr>
+                      <td class="data-label">Peserta</td>
+                      <td class="data-value">{{PARTICIPANTS}} Orang</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- Tanggal Reuni -->
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="data-row" style="margin-bottom: 12px;">
+                    <tr>
+                      <td class="data-label">Tanggal</td>
+                      <td class="data-value">{{DATE}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Catatan -->
+            <div class="notes-header">Catatan Tambahan & Keinginan Khusus</div>
+            <div class="notes-box">
+              {{NOTES}}
+            </div>
+
+            <!-- CTA Button -->
+            <div class="action-container">
+              <a href="https://wa.me/{{WHATSAPP_CLEAN}}" target="_blank" class="wa-button">Hubungi Calon Client</a>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="footer">
+            SISTEM NOTIFIKASI OTOMATIS &copy; 2026 <a href="http://localhost:3000/">JUMPALAGI.COM</a>
+          </div>
+
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

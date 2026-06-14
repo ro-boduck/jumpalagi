@@ -1,6 +1,7 @@
 'use client';
 import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useConsultation } from '@/contexts/ConsultationContext';
 
 const DICT = {
   ID: {
@@ -32,6 +33,7 @@ const DICT = {
 export function PackageCatalog() {
   const WHATSAPP_LINK = "https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20berkonsultasi%20mengenai%20opsi%20layanan%20reuni.";
   const { lang } = useLanguage();
+  const { openConsult } = useConsultation();
   const t = DICT[lang];
 
   return (
@@ -54,27 +56,28 @@ export function PackageCatalog() {
           className="col-span-1 md:col-span-12 flex flex-row md:grid md:grid-cols-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none gap-4 md:gap-0 bg-text/5 md:bg-transparent py-6 md:p-0 px-5 md:px-0 [&::-webkit-scrollbar]:hidden scroll-pl-5 md:scroll-pl-0 border-b-2 border-border"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {t.packages.map((pkg, i) => (
-            <a 
-              key={i}
-              href={WHATSAPP_LINK} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className={`shrink-0 w-[85vw] sm:w-[400px] md:w-auto md:col-span-6 flex flex-col justify-between p-5 md:p-12 border-2 md:border-y-0 md:border-l-0 md:border-r-0 md:border-b-2 border-text md:border-border snap-center md:snap-align-none group transition-all duration-300 bg-bg hover:bg-muted focus-visible:ring-4 focus-visible:ring-primary emil-button overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-none ${i % 2 !== 0 ? 'md:border-l-2' : ''} ${i >= 2 ? 'md:border-b-0' : ''} ${i === t.packages.length - 1 ? 'md:border-b-0' : ''}`}
-            >
-              <div className="flex justify-between items-start mb-6 md:mb-16">
-                <span className="neo-label text-xs md:text-xl px-2 md:px-3 py-1 leading-none">{pkg.label}</span>
-                <ArrowUpRight className="w-8 h-8 md:w-12 md:h-12 text-primary group-hover:rotate-45 group-hover:scale-125 transition-transform duration-500 shrink-0" />
-              </div>
-              <div className="group-hover:-translate-y-2 transition-transform duration-500 mt-2 md:mt-0">
-                <h3 className="text-2xl md:text-4xl lg:text-5xl font-black mb-2 md:mb-4 uppercase tracking-tighter text-text group-hover:text-primary transition-colors break-words">{pkg.name}</h3>
-                <p className="hidden md:block font-bold uppercase tracking-widest text-[10px] md:text-sm mb-3 md:mb-4 leading-relaxed text-text/80">{pkg.desc}</p>
-                <div className="inline-block border-b-2 border-primary text-primary font-bold uppercase tracking-widest text-[10px] md:text-xs pb-1 mt-2 md:mt-4">
-                  {t.learnMore}
+          {t.packages.map((pkg, i) => {
+            const packageKey = pkg.label.toLowerCase();
+            return (
+              <button 
+                key={i}
+                onClick={() => openConsult(packageKey)}
+                className={`text-left cursor-pointer shrink-0 w-[85vw] sm:w-[400px] md:w-auto md:col-span-6 flex flex-col justify-between p-5 md:p-12 border-2 md:border-y-0 md:border-l-0 md:border-r-0 md:border-b-2 border-text md:border-border snap-center md:snap-align-none group transition-all duration-300 bg-bg hover:bg-muted focus-visible:ring-4 focus-visible:ring-primary emil-button overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-none ${i % 2 !== 0 ? 'md:border-l-2' : ''} ${i >= 2 ? 'md:border-b-0' : ''} ${i === t.packages.length - 1 ? 'md:border-b-0' : ''}`}
+              >
+                <div className="flex justify-between items-start mb-6 md:mb-16 w-full">
+                  <span className="neo-label text-xs md:text-xl px-2 md:px-3 py-1 leading-none">{pkg.label}</span>
+                  <ArrowUpRight className="w-8 h-8 md:w-12 md:h-12 text-primary group-hover:rotate-45 group-hover:scale-125 transition-transform duration-500 shrink-0" />
                 </div>
-              </div>
-            </a>
-          ))}
+                <div className="group-hover:-translate-y-2 transition-transform duration-500 mt-2 md:mt-0 text-left">
+                  <h3 className="text-2xl md:text-4xl lg:text-5xl font-black mb-2 md:mb-4 uppercase tracking-tighter text-text group-hover:text-primary transition-colors break-words">{pkg.name}</h3>
+                  <p className="hidden md:block font-bold uppercase tracking-widest text-[10px] md:text-sm mb-3 md:mb-4 leading-relaxed text-text/80">{pkg.desc}</p>
+                  <div className="inline-block border-b-2 border-primary text-primary font-bold uppercase tracking-widest text-[10px] md:text-xs pb-1 mt-2 md:mt-4">
+                    {t.learnMore}
+                  </div>
+                </div>
+              </button>
+            );
+          })}
         </div>
         
       </div>
