@@ -41,9 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 # AI / Agent files (local only)
-.agents/skills/documentation-writer/
-.agents/skills/high-end-visual-design/
-.agents/skills/ponytail/
+.agents/
+AGENTS.md
+CLAUDE.md
 PROJECT_GUIDE.md
 TECHNICAL_GUIDE.md
 src/app/demo/
