@@ -1,51 +1,54 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-/.pnp
+# Dependencies & Build Outputs
+node_modules/
+.next/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+next-env.d.ts
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
-# testing
 /coverage
-
-# next.js
-/.next/
 /out/
-
-# production
 /build
 
-# misc
+# Local Environments & Secrets
+.env.local
+.env.*.local
+.env*
+
+# Vercel
+.vercel
+
+# Editor Settings
+.vscode/
 .DS_Store
 *.pem
-
-# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# AI / Agent files (local only)
+# AI/Agents Temporary Data
 .agents/
 AGENTS.md
 CLAUDE.md
+skills-lock.json
+project guide.md
 PROJECT_GUIDE.md
 TECHNICAL_GUIDE.md
 src/app/demo/
 src/components/ui/typewriter-text-demo.tsx
 src/components/ui/typewriter-text.tsx
+
+# Project Files (Local Only)
+design.md
+DESIGN.md
+getcolor.js
+get_colors.js
+reunion-hub-PRD-v2.md
