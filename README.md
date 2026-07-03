@@ -55,6 +55,16 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - `src/lib/` - Shared utilities and helpers.
 - `src/templates/` - HTML templates for system/notification emails.
 
+## 🚀 Deployment (Vercel)
+
+You can easily deploy JumpaLagi to Vercel using the following steps:
+
+1. **Import the Project**: Link your GitHub repository to Vercel.
+2. **Environment Variables**: In the Vercel project settings, configure the following environment variable:
+   - `RESEND_API_KEY`: Your production Resend API Key.
+3. **Region Configuration (Important)**: For optimal latency and response times targeting Southeast Asia, set the Vercel Function region to **Singapore (sin1)** in your project settings (`vercel.json` or Vercel dashboard).
+4. **Deploy**: Trigger a deployment from your `master` branch.
+
 ## 📄 License
 
 This project is proprietary and confidential. All rights reserved.

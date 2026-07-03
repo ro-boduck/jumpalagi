@@ -55,6 +55,16 @@ Buka [http://localhost:3000](http://localhost:3000) pada browser Anda untuk meli
 - `src/lib/` - Utilitas dan helper bersama.
 - `src/templates/` - Templat HTML untuk email sistem/notifikasi.
 
+## 🚀 Deployment (Vercel)
+
+Anda dapat dengan mudah menyebarkan JumpaLagi ke Vercel dengan langkah-langkah berikut:
+
+1. **Impor Proyek**: Hubungkan repositori GitHub Anda ke Vercel.
+2. **Variabel Lingkungan**: Di pengaturan proyek Vercel, konfigurasikan variabel lingkungan berikut:
+   - `RESEND_API_KEY`: API Key Resend produksi Anda.
+3. **Konfigurasi Wilayah (Penting)**: Untuk latensi dan waktu respons yang optimal bagi pengguna di Asia Tenggara, atur wilayah Vercel Function ke **Singapura (singapore-sin1)** atau **Singapore (sin1)** di pengaturan proyek Anda (melalui `vercel.json` atau dashboard Vercel).
+4. **Deploy**: Jalankan deployment dari branch `master` Anda.
+
 ## 📄 Lisensi
 
 Proyek ini bersifat hak milik (proprietary) dan rahasia. Hak cipta dilindungi undang-undang.
