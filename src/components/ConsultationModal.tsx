@@ -70,6 +70,7 @@ const DICT = {
 };
 
 export function ConsultationModal() {
+  const [isSubmitHovered, setIsSubmitHovered] = useState(false);
   const { lang } = useLanguage();
   const { isConsultOpen, selectedPackage, closeConsult } = useConsultation();
   const t = DICT[lang];
@@ -364,10 +365,13 @@ export function ConsultationModal() {
                   <button
                     disabled={status === 'submitting'}
                     type="submit"
-                    className="neo-btn-primary flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
+                    onMouseEnter={() => setIsSubmitHovered(true)}
+                    onMouseLeave={() => setIsSubmitHovered(false)}
+                    className="neo-btn-primary relative overflow-hidden group flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
                   >
-                    <Send className="w-5 h-5 stroke-[2.5px]" />
-                    <span>{status === 'submitting' ? t.submittingBtn : t.submitBtn}</span>
+                    <Send className="w-5 h-5 stroke-[2.5px] relative z-10" />
+                    <span className="relative z-10">{status === 'submitting' ? t.submittingBtn : t.submitBtn}</span>
+                    <div className={`absolute inset-0 pointer-events-none transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/70 to-transparent ${isSubmitHovered ? "translate-x-full" : "-translate-x-full"}`} />
                   </button>
                 </form>
               </>

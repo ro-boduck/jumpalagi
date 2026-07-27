@@ -1,11 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import { Navbar } from './Navbar';
-import { Button } from './ui/button';
-import { ChevronDown } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useConsultation } from '@/contexts/ConsultationContext';
+import { Text_03 } from './ui/wave-text';
 
 const DICT = {
   ID: {
@@ -37,7 +36,7 @@ const DICT = {
 };
 
 export function Hero() {
-  const WHATSAPP_LINK = "https://wa.me/6287754764598?text=Halo%20Tim%20Jumpa%20Lagi,%20saya%20butuh%20bantuan%20mewujudkan%20reuni%20kami.";
+  const [isBtnHovered, setIsBtnHovered] = useState(false);
   const { lang } = useLanguage();
   const { openConsult } = useConsultation();
   const t = DICT[lang];
@@ -70,9 +69,14 @@ export function Hero() {
           <div>
             <button 
               onClick={() => openConsult()}
-              className="neo-btn-primary cursor-pointer"
+              onMouseEnter={() => setIsBtnHovered(true)}
+              onMouseLeave={() => setIsBtnHovered(false)}
+              className="neo-btn-primary relative overflow-hidden group cursor-pointer"
             >
-              {t.cta}
+              <span className="relative z-10 flex items-center justify-center">
+                <Text_03 text={t.cta} isHovered={isBtnHovered} className="inline-block text-inherit font-inherit text-sm md:text-base tracking-widest" />
+              </span>
+              <div className={`absolute inset-0 pointer-events-none transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/70 to-transparent ${isBtnHovered ? "translate-x-full" : "-translate-x-full"}`} />
             </button>
             <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest mt-3 text-primary">
               {t.ctaDesc}

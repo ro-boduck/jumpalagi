@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # Dependencies & Build Outputs
 node_modules/
 .next/
@@ -34,21 +32,26 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# AI/Agents Temporary Data
+# AI, Agents & Temporary Data
 .agents/
 AGENTS.md
 CLAUDE.md
 skills-lock.json
+graphify-out/
+jumpalagi-guide.md
 project guide.md
 PROJECT_GUIDE.md
 TECHNICAL_GUIDE.md
-src/app/demo/
-src/components/ui/typewriter-text-demo.tsx
-src/components/ui/typewriter-text.tsx
 
-# Project Files (Local Only)
+# Project Design & Local Docs
 design.md
 DESIGN.md
 getcolor.js
 get_colors.js
 reunion-hub-PRD-v2.md
+
+# Demos
+src/app/demo/
+src/components/ui/demo.tsx
+src/components/ui/*-demo.tsx
+src/components/ui/typewriter-text.tsx

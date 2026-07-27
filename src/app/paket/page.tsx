@@ -1,9 +1,11 @@
 'use client';
+import React, { useState } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import React from 'react';
+import { useWhatsAppRedirect } from '@/contexts/WhatsAppRedirectContext';
+import { Text_03 } from '@/components/ui/wave-text';
 
 const DICT = {
   ID: {
@@ -41,7 +43,7 @@ const DICT = {
         duration: 'Fleksibel',
         desc: 'Punya destinasi impian sendiri? Tim concierge kami siap merancang itinerary eksklusif yang menyesuaikan jadwal dan budget angkatan Anda.',
         label: 'CUSTOM',
-        image: null
+        image: '/images/custom.jpg'
       },
     ],
     cta: 'PESAN SEKARANG'
@@ -81,7 +83,7 @@ const DICT = {
         duration: 'Flexible',
         desc: 'Have your own dream destination? Our concierge team is ready to design an exclusive itinerary tailored to your batch\'s schedule and budget.',
         label: 'CUSTOM',
-        image: null
+        image: '/images/custom.jpg'
       },
     ],
     cta: 'BOOK NOW'
@@ -89,8 +91,9 @@ const DICT = {
 };
 
 export default function PaketPage() {
-  const WHATSAPP_LINK = "https://wa.me/6281234567890?text=Halo%20Tim%20Jumpa%20Lagi,%20saya%20ingin%20tanya%20detail%20mengenai%20paket%20reuni.";
+  const [hoveredCardIdx, setHoveredCardIdx] = useState<number | null>(null);
   const { lang } = useLanguage();
+  const { triggerRedirect } = useWhatsAppRedirect();
   const t = DICT[lang];
 
   return (
@@ -116,34 +119,37 @@ export default function PaketPage() {
           {t.packages.map((pkg, i) => (
             <div 
               key={i}
-              className={`col-span-1 md:col-span-6 bg-bg group ${i % 2 !== 0 ? 'md:border-l-2' : ''} border-b-2 border-border`}
+              className={`col-span-1 md:col-span-6 bg-bg group ${i % 2 !== 0 ? 'md:border-l-2' : ''} border-b-2 border-border cursor-pointer`}
+              onClick={() => triggerRedirect(pkg.name)}
+              onMouseEnter={() => setHoveredCardIdx(i)}
+              onMouseLeave={() => setHoveredCardIdx(null)}
             >
               <div className="neo-card-hover p-6 md:p-12 overflow-hidden">
-                {/* Hover background image + dark mask */}
+                {/* Hover background image + dark mask + subtle blur */}
                 {pkg.image && (
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
-                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${pkg.image})` }} />
-                    <div className="absolute inset-0 bg-black/50" />
+                    <div className="absolute inset-0 bg-cover bg-center scale-105 group-hover:scale-100 transition-transform duration-700 ease-out" style={{ backgroundImage: `url(${pkg.image})` }} />
+                    <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
                   </div>
                 )}
 
                 <div className="flex justify-between items-start mb-8 relative z-10">
                   <span className="neo-label text-sm md:text-base px-3 py-1">{pkg.label}</span>
-                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="bg-primary group-hover:bg-accent text-primary-foreground p-3 active:scale-[0.95] transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] rounded-none border-2 border-text group-hover:border-accent hover:bg-text hover:text-bg">
+                  <div className="bg-primary group-hover:bg-accent text-primary-foreground p-3 active:scale-[0.95] transition-all duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] rounded-none border-2 border-text group-hover:border-accent hover:bg-text hover:text-bg">
                     <ArrowUpRight className="w-6 h-6" />
-                  </a>
+                  </div>
                 </div>
                 <div className="mb-8 relative z-10">
                   <h3 className="text-3xl md:text-5xl font-black mb-2 uppercase tracking-tighter text-text group-hover:text-accent transition-colors duration-[250ms] break-words">{pkg.name}</h3>
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-xs md:text-sm font-bold uppercase tracking-widest text-primary group-hover:text-accent/80 transition-colors duration-[250ms] mb-6">
-                    <span className="bg-primary/10 group-hover:bg-accent/10 px-2 py-1 transition-colors duration-[250ms]">{pkg.price}</span>
-                    <span className="bg-primary/10 group-hover:bg-accent/10 px-2 py-1 transition-colors duration-[250ms]">{pkg.duration}</span>
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-xs md:text-sm font-bold uppercase tracking-widest text-primary group-hover:text-accent/90 transition-colors duration-[250ms] mb-6">
+                    <span className="bg-primary/10 group-hover:bg-black/50 group-hover:border group-hover:border-accent/40 px-2 py-1 transition-colors duration-[250ms]">{pkg.price}</span>
+                    <span className="bg-primary/10 group-hover:bg-black/50 group-hover:border group-hover:border-accent/40 px-2 py-1 transition-colors duration-[250ms]">{pkg.duration}</span>
                   </div>
-                  <p className="font-bold uppercase tracking-widest text-xs md:text-sm leading-relaxed text-text/80 group-hover:text-accent/70 transition-colors duration-[250ms]">{pkg.desc}</p>
+                  <p className="font-bold uppercase tracking-widest text-xs md:text-sm leading-relaxed text-text/80 group-hover:text-white transition-colors duration-[250ms]">{pkg.desc}</p>
                 </div>
-                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="relative z-10 inline-block self-start border-b-2 border-text group-hover:border-accent text-text group-hover:text-accent font-black uppercase tracking-widest text-sm pb-1 hover:text-primary hover:border-primary active:scale-[0.97] transition-all duration-[160ms] ease-[cubic-bezier(0.23,1,0.32,1)] origin-left">
-                  {t.cta}
-                </a>
+                <div className="relative z-10 inline-block self-start border-b-2 border-text group-hover:border-accent text-text group-hover:text-accent font-black uppercase tracking-widest text-sm pb-1 hover:text-primary hover:border-primary active:scale-[0.97] transition-all duration-[160ms] ease-[cubic-bezier(0.23,1,0.32,1)] origin-left">
+                  <Text_03 text={t.cta} isHovered={hoveredCardIdx === i} className="inline-block text-inherit font-inherit" />
+                </div>
               </div>
             </div>
           ))}

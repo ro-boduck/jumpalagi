@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MessageCircle, MapPin, Instagram } from 'lucide-react';
+import { MapPin, Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 

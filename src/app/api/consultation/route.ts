@@ -291,7 +291,7 @@ export async function POST(request: Request) {
       try {
         const errObj = JSON.parse(errorText);
         errorMessage = errObj.message || errorText;
-      } catch (e) {}
+      } catch {}
       return NextResponse.json({ error: `Resend API Error: ${errorMessage}` }, { status: response.status });
     }
 
